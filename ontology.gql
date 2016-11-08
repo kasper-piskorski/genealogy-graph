@@ -38,6 +38,8 @@ occupuation sub fact has resource occupuation-type;
 occupuation-type isa resource-type datatype string;
 
 marriage sub fact;
+birth sub fact;
+death sub fact;
 
 genealogy-fact isa relation-type
 	has-role known-fact
@@ -46,14 +48,15 @@ genealogy-fact isa relation-type
 person isa entity-type
 	plays-role fact-subject
 	plays-role person-in-relationship
-	has-resource 
+	has-resource identifier
+	has-resource name
 	has-resource family-name;
 
 ordered-resource isa resource-type is abstract has resource order;
 order isa resource-type datatype long;
 name sub ordered-resource;
 family-name sub name;
-
+identifier isa resource datatype string;
 
 relationship isa relation-type
 	is abstract
