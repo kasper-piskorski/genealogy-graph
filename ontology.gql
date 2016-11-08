@@ -1,0 +1,76 @@
+insert
+
+document isa entity-type
+	plays-role evidence
+	has-resource document-location
+	has-resource document-type;
+document-location isa resource datatype string;
+document-type isa resource datatype string;
+
+conclusion-evidence isa relation-type
+	has-role evidence
+	has-role supported-conclusion;
+evidence isa role-type;
+supported-conclusion isa role-type;
+
+conclusion isa entity-type
+	is abstract
+	plays-role supported-conclusion
+	has-resource confidence
+	has-resource extracted;
+
+#Extracted indicates whether the conclusion has been inferred or not
+extracted isa relationship datatype boolean;
+#confidence level: low-mid-high
+confidence isa resource-type datatype string;
+
+fact sub conclusion
+	plays-role known-fact
+	has-resource date
+	has-resource place;
+date isa resource-type datatype string;
+place isa resource-type datatype string;
+
+gender sub fact has resource gender-type;
+gender-type isa resource-type datatype string;
+
+occupuation sub fact has resource occupuation-type;
+occupuation-type isa resource-type datatype string;
+
+marriage sub fact;
+
+genealogy-fact isa relation-type
+	has-role known-fact
+	has-role fact-subject;
+
+person isa entity-type
+	plays-role fact-subject
+	plays-role person-in-relationship
+	has-resource 
+	has-resource family-name;
+
+ordered-resource isa resource-type is abstract has resource order;
+order isa resource-type datatype long;
+name sub ordered-resource;
+family-name sub name;
+
+
+relationship isa relation-type
+	is abstract
+	plays-role fact-subject
+	has-resource extracted;
+
+person-in-relationship isa role-type is abstract;
+
+couple sub relationship
+	has-role person1
+	has-role person2;
+person1 sub person-in-relationship;
+person2 sub person-in-relationship;
+
+parent-child sub relationship
+	has-role parent
+	has-role child;
+parent sub person-in-relationship;
+child sub person-in-relationship;
+
