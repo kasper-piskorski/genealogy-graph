@@ -1,0 +1,4 @@
+match $p1 has identifier <parent1>; $p2 has identifier <parent2>; $c has identifier <child>;
+insert
+(parent: $p1, child: $c) isa parent-child;
+(parent: $p2, child: $c) isa parent-child;

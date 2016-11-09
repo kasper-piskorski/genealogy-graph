@@ -37,7 +37,9 @@ gender-type isa resource-type datatype string;
 occupuation sub fact has resource occupuation-type;
 occupuation-type isa resource-type datatype string;
 
-marriage sub fact;
+marriage sub fact has-resource spouse;
+spouse isa resource-type datatype string;
+
 birth sub fact;
 death sub fact;
 
@@ -71,9 +73,52 @@ couple sub relationship
 person1 sub person-in-relationship;
 person2 sub person-in-relationship;
 
+
 parent-child sub relationship
 	has-role parent
 	has-role child;
 parent sub person-in-relationship;
 child sub person-in-relationship;
+
+
+### The following will be added by reasoner
+siblings sub relationship:
+	has-role sibling1
+	has-role sibling2;
+sibling1 sub person-in-relationship;
+sibling2 sub person-in-relationship;
+
+motherhood sub parent-child
+	has-role mother
+	has-role child-of-mother;
+mother sub person-in-relationship;
+child-of-mother sub person-in-relationship;
+
+fatherhood sub parent-child
+	has-role father
+	has-role child-of-father;
+father sub person-in-relationship;
+child-of-father sub person-in-relationship;
+
+grandparenthood sub relationship
+	has-role grandparent
+	has-role grandchild;
+grandparent sub person-in-relationship;
+grandchild sub person-in-relationship;
+
+cousins sub relationship
+	has-role cousin1
+	has-role cousin2;
+cousin1 sub person-in-relationship;
+cousin2 sub person-in-relationship;
+
+in-laws sub relationship
+	has-role child-in-law
+	has-role mother-in-law
+	has-role father-in-law;
+child-in-law sub person-in-relationship;
+mother-in-law sub person-in-relationship;
+father-in-law sub person-in-relationship;
+
+
 

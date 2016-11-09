@@ -1,0 +1,87 @@
+isa inference-rule
+lhs
+{(parent:$p, child: $gc) isa parent-child;
+(parent: $gp, child: $p) isa parent-child;
+select $gp, $gc;}
+rhs
+{(grandparent: $gp, grandchild: $gc) isa grandparenthood;}
+
+isa inference-rule
+lhs
+{(parent: $x, child: $y) isa parent-child;
+($x,known-fact: $g) isa genealogy-fact; $g isa gender has gender-type "female";
+select $x, $y;}
+rhs
+{(mother: $x, child-of-mother: $y) isa motherhood;}
+
+isa inference-rule
+lhs
+{(parent: $x, child: $y) isa parent-child;
+(fact-subject: $x,known-fact: $g) isa genealogy-fact; $g isa gender has gender-type "male";
+select $x, $y;}
+rhs
+{(father: $x, child-of-father: $y) isa fatherhood;}
+
+isa inference-rule
+lhs
+{(mother: $m, $x) isa motherhood;
+(mother: $m, $y) isa motherhood;
+(father: $f, $x) isa fatherhood;
+(father: $f, $y) isa fatherhood;
+select $x, $y;}
+rhs
+{(sibling1: $x, sibling2: $y) isa siblings;}
+
+isa inference-rule
+lhs
+{match
+(parent: $p, child: $c1) isa parent-child;
+($p, $p2) isa siblings;
+(parent: $p2, child: $c2) isa parent-child;
+select $c1, $c2;}
+rhs
+{(cousin1: $c1, cousin2: $c2) isa cousins}
+
+isa inference-rule
+lhs {
+$x isa marriage has spouse $s;
+$y isa person has identifier $s;
+select $x, $y;
+}
+rhs {
+(known-fact: $x, fact-subject: $y) isa genealogy-fact;
+}
+
+
+# if a fact has more than 3 evidence, infer confidence "high"
+
+isa inference-rule
+lhs
+{$m isa marriage has confidence "high";
+($m, fact-subject: $x) isa genealogy-fact; $x isa person;
+($m, fact-subject: $y) isa genealogy-fact; $y isa person;
+select $x, $y, $m;}
+rhs
+{(person1: $x, person2: $y) isa couple;}
+
+isa inference-rule
+lhs
+{$m isa marriage has confidence "high";
+($m, fact-subject: $x) isa genealogy-fact; 
+($m, fact-subject: $y) isa genealogy-fact; 
+$rel ($x, $y) isa couple;
+select $rel, $m;}
+rhs
+{(known-fact: $m, fact-subject: $rel) isa genealogy-fact;}
+
+isa inference-rule
+lhs
+{$mr ($x, $y) isa couple;
+($m, $mr) isa genealogy-fact;
+$m isa marriage;
+(mother: $mum, $y) isa motherhood;
+(father: $dad, $y) isa fatherhood;
+select $x, $mum, $dad;}
+rhs
+{(child-in-law: $x, mother-in-law: $mum, father-in-law: $dad) isa in-laws;
+}
