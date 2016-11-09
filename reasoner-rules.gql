@@ -52,8 +52,12 @@ rhs {
 (known-fact: $x, fact-subject: $y) isa genealogy-fact;
 }
 
-
-# if a fact has more than 3 evidence, infer confidence "high"
+#THE FOLLOWING NEEDS DEGREE PERSISTED WRT conclusion-evidence assertions
+isa inference-rule
+lhs
+{($f isa conclusion has degree > 3; select $f;}
+rhs
+{$f has confidence "high";}
 
 isa inference-rule
 lhs
