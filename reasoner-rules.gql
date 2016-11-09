@@ -22,6 +22,7 @@ select $x, $y;}
 rhs
 {(father: $x, child-of-father: $y) isa fatherhood;}
 
+### Everybody will his own sibling. Working on it, but I have no plan B for this (and this creates problems cousins)
 isa inference-rule
 lhs
 {(mother: $m, $x) isa motherhood;
@@ -59,6 +60,7 @@ lhs
 rhs
 {$f has confidence "high";}
 
+#If one is married, will be married to him/herself. Plan B is to add an actual marriage relationship.
 isa inference-rule
 lhs
 {$m isa marriage has confidence "high";
@@ -68,6 +70,7 @@ select $x, $y, $m;}
 rhs
 {(person1: $x, person2: $y) isa couple;}
 
+###Currently this will not work: couple relationship need to be materialised (will be done)
 isa inference-rule
 lhs
 {$m isa marriage has confidence "high";
