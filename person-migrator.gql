@@ -1,13 +1,13 @@
-$x isa person has name $name1 has identifier <pid>; $name1 value <name1> has order 1;
+$x isa person has name $name1 has identifier <pid>; $name1 value <name1> has order-number 1;
 $gender isa gender has gender-type <gender>;
 (fact-subject: $x, known-fact: $gender) isa genealogy-fact;
-if (ne family-name null) {
-$x has family-name $surname; $surname value <surname> has order 1;}
-if (ne name2 null) {
-$x has name $name2; $name2 value <name2> has order 2;}
-if (ne born null) {
+if (ne surname null) do {
+$x has family-name $surname; $surname value <surname> has order-number 1;}
+if (ne name2 null) do {
+$x has name $name2; $name2 value <name2> has order-number 2;}
+if (ne born null) do {
 $birth isa birth has date <born>;
 (fact-subject: $x, known-fact: $birth) isa genealogy-fact;}
-if (ne dead null) {
+if (ne dead null) do {
 $death isa birth has date <dead>;
 (fact-subject: $x, known-fact: $death) isa genealogy-fact;}
