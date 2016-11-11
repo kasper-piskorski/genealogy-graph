@@ -1,2 +1,3 @@
-$m isa marriage has spouse <spouse1>, has spouse <spouse2> has confidence "high";
-if (ne date null) {$m has date <date>}
+insert
+$m isa marriage has spouse <spouse1>, has spouse <spouse2>, has confidence 'high';
+if (ne date null) do {$m has date <date>;}

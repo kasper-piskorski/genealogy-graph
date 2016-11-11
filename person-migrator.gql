@@ -1,3 +1,4 @@
+insert 
 $x isa person has name $name1 has identifier <pid>; $name1 value <name1> has order-number 1;
 $gender isa gender has gender-type <gender>;
 (fact-subject: $x, known-fact: $gender) isa genealogy-fact;

@@ -1,0 +1,18 @@
+insert
+$m0 isa marriage has spouse 'Elizabeth Niesz', has spouse 'William Sanford Titus', has date '1845-10-21', has confidence 'high';
+$m1 isa marriage has spouse 'Barbara Ellen Titus', has spouse 'John Meyers', has date '1874-12-09', has confidence 'high';
+$m2 isa marriage has spouse 'Amanda Ann Titus', has spouse 'Byron Culbertson', has confidence 'high';
+$m3 isa marriage has spouse 'William Sanford Titus Jr.', has spouse 'Susan Josephine Dudley', has date '1884-10-21', has confidence 'high';
+$m4 isa marriage has spouse 'John Niesz', has spouse 'Mary Young', has date '1820-05-23', has confidence 'high';
+$m5 isa marriage has spouse 'William Niesz', has spouse 'Delilah Roush', has date '1844-11-21', has confidence 'high';
+$m6 isa marriage has spouse 'William Niesz', has spouse 'Ann Eliza Niesz', has date '1854-05-04', has confidence 'high';
+$m7 isa marriage has spouse 'Mary Niesz', has spouse 'Samuel S. Bard', has confidence 'high';
+$m8 isa marriage has spouse 'George W. Niesz', has spouse 'Josephine', has confidence 'high';
+$m9 isa marriage has spouse 'John Kossuth Niesz', has spouse 'Maggie Billings', has confidence 'high';
+$m10 isa marriage has spouse 'Sarah Ann Niesz', has spouse 'Elam G. Smith', has confidence 'high';
+$m11 isa marriage has spouse 'Benjamin Franklin Niesz', has spouse 'Rosalie', has confidence 'high';
+$m12 isa marriage has spouse 'Jacob Young', has spouse 'Barbara Herchelroth', has date '1795 circa', has confidence 'high';
+$m13 isa marriage has spouse 'John Newman', has spouse 'Barbara Herchelroth', has confidence 'high';
+$m14 isa marriage has spouse 'John Newman2', has spouse 'Elizabeth', has confidence 'high';
+$m15 isa marriage has spouse 'Lawrence Newman', has spouse 'Isabelle McGaughey', has date '1829-10-29', has confidence 'high';
+$m16 isa marriage has spouse 'Henry Newman', has spouse 'Sarah Hane', has date '1832-11-29', has confidence 'high';

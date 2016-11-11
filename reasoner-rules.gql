@@ -1,26 +1,30 @@
+insert
 isa inference-rule
 lhs
 {(parent:$p, child: $gc) isa parent-child;
 (parent: $gp, child: $p) isa parent-child;
-select $gp, $gc;}
+#select $gp, $gc;
+}
 rhs
-{(grandparent: $gp, grandchild: $gc) isa grandparenthood;}
+{(grandparent: $gp, grandchild: $gc) isa grandparenthood;};
 
 isa inference-rule
 lhs
 {(parent: $x, child: $y) isa parent-child;
 ($x,known-fact: $g) isa genealogy-fact; $g isa gender has gender-type "female";
-select $x, $y;}
+#select $x, $y;
+}
 rhs
-{(mother: $x, child-of-mother: $y) isa motherhood;}
+{(mother: $x, child-of-mother: $y) isa motherhood;};
 
 isa inference-rule
 lhs
 {(parent: $x, child: $y) isa parent-child;
 (fact-subject: $x,known-fact: $g) isa genealogy-fact; $g isa gender has gender-type "male";
-select $x, $y;}
+#select $x, $y;
+}
 rhs
-{(father: $x, child-of-father: $y) isa fatherhood;}
+{(father: $x, child-of-father: $y) isa fatherhood;};
 
 ### Everybody will his own sibling. Working on it, but I have no plan B for this (and this creates problems cousins)
 isa inference-rule
@@ -29,36 +33,40 @@ lhs
 (mother: $m, $y) isa motherhood;
 (father: $f, $x) isa fatherhood;
 (father: $f, $y) isa fatherhood;
-select $x, $y;}
+#select $x, $y;
+}
 rhs
-{(sibling1: $x, sibling2: $y) isa siblings;}
+{(sibling1: $x, sibling2: $y) isa siblings;};
 
 isa inference-rule
 lhs
-{match
+{
 (parent: $p, child: $c1) isa parent-child;
 ($p, $p2) isa siblings;
 (parent: $p2, child: $c2) isa parent-child;
-select $c1, $c2;}
+#select $c1, $c2;
+}
 rhs
-{(cousin1: $c1, cousin2: $c2) isa cousins}
+{(cousin1: $c1, cousin2: $c2) isa cousins;};
 
 isa inference-rule
 lhs {
 $x isa marriage has spouse $s;
 $y isa person has identifier $s;
-select $x, $y;
+#select $x, $y;
 }
 rhs {
 (known-fact: $x, fact-subject: $y) isa genealogy-fact;
-}
+};
 
 #THE FOLLOWING NEEDS DEGREE PERSISTED WRT conclusion-evidence assertions
 isa inference-rule
 lhs
-{($f isa conclusion has degree > 3; select $f;}
+{$f isa conclusion has degree > 3; 
+#select $f;
+}
 rhs
-{$f has confidence "high";}
+{$f has confidence "high";};
 
 #If one is married, will be married to him/herself. Plan B is to add an actual marriage relationship.
 isa inference-rule
@@ -66,9 +74,10 @@ lhs
 {$m isa marriage has confidence "high";
 ($m, fact-subject: $x) isa genealogy-fact; $x isa person;
 ($m, fact-subject: $y) isa genealogy-fact; $y isa person;
-select $x, $y, $m;}
+#select $x, $y, $m;
+}
 rhs
-{(person1: $x, person2: $y) isa couple;}
+{(person1: $x, person2: $y) isa couple;};
 
 ###Currently this will not work: couple relationship need to be materialised (will be done)
 isa inference-rule
@@ -77,9 +86,10 @@ lhs
 ($m, fact-subject: $x) isa genealogy-fact; 
 ($m, fact-subject: $y) isa genealogy-fact; 
 $rel ($x, $y) isa couple;
-select $rel, $m;}
+#select $rel, $m;
+}
 rhs
-{(known-fact: $m, fact-subject: $rel) isa genealogy-fact;}
+{(known-fact: $m, fact-subject: $rel) isa genealogy-fact;};
 
 isa inference-rule
 lhs
@@ -88,7 +98,7 @@ lhs
 $m isa marriage;
 (mother: $mum, $y) isa motherhood;
 (father: $dad, $y) isa fatherhood;
-select $x, $mum, $dad;}
-rhs
-{(child-in-law: $x, mother-in-law: $mum, father-in-law: $dad) isa in-laws;
+#select $x, $mum, $dad;
 }
+rhs
+{(child-in-law: $x, mother-in-law: $mum, father-in-law: $dad) isa in-laws;};
